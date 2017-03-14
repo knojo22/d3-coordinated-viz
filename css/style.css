@@ -1,0 +1,25 @@
+/* Stylesheet by Jon Fok, 2017 */
+
+svg{
+    background-color: "rgba(0,0,0,0.2)"
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+  font-family: "Times New Roman", sans-serif;
+}
+
+.axis text {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 0.9em;
+}
+
+.title {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+}
