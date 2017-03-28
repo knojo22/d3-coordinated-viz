@@ -1,159 +1,84 @@
 /* JavaScript by Jon Fok, 2017 */
 
-window.onload = function(){
-    var w = 1000, h = 500;
-    // Creating the <body> element from the DOM
-    var container = d3.select("body")
-    .append("svg")
-    .datum(500)
-    .attr("width", w)
-    .attr("height", h)
-    .attr("class", "container")
-    .style("background-color", "rgba(0,0,0,0.2)");
+window.onload = setMap();
+function setMap(){
 
-    // Creating the inner Rectangle block
-    var innerRect = container.append("rect")
-    .datum(400)
-    .attr("width", function(d){
-      return d*2+100;
-    })
-    .attr("height", function(d){
-      return d;
-    })
-    .attr("class", "innerRect")
-    .attr("x", 50)
-    .attr("y", 50)
-    .style("fill", "#FFFFFF");
+  // Creating map frame dimensions
+  var width = 960,
+      height = 460;
 
-  // Defining the array for the city population and the population values
-  var cityPop = [
-      {
-        city: 'Vancouver',
-        population: 631486
-      },
-      {
-        city: 'Edmonton',
-        population: 1321426
-      },
-      {
-        city: 'Ottawa',
-        population: 934243
-      },
-      {
-        city: 'Quebec City',
-        population: 531902
-      }
-    ];
+  // Creating a svg container for the map
+  var map = d3.select("body")
+        .append("svg")
+        .attr("class", "map")
+        .attr("width", width)
+        .attr("height", height);
 
-  var x = d3.scaleLinear()
-      .range([90, 800])
-      .domain([0,3]);
+  // Defining the map projection parameters using an Albers Equal Area Conic Projection
+  var projection = d3.geoAlbers()
+        .center([20.00, 38.895])
+        .rotate([97.36, 0, 0])
+        .parallels([29.5, 45.5])
+        .scale(25000)
+        .translate([width / 2, height / 2]);
 
-  // Retrieving the minimum and maximum values from the city population array
-  var minPop = d3.min(cityPop, function(d){
-      return d.population;
-    });
+  var path = d3.geoPath()
+        .projection(projection);
 
-  var maxPop = d3.max(cityPop, function(d){
-      return d.population;
-    });
+  // Using d3.queue to perform parallel asynchronous data loading
+  d3.queue()
+      // Loading attributes from the csv file
+      .defer(d3.csv, "data/DC_Metropolitan.csv")
+      // Loading background spatial data
+      .defer(d3.json, "data/ContinentalUS_CT.topojson")
+      // Loading spatial data
+      .defer(d3.json, "data/DC_Metropolitan.topojson")
+      .await(callback);
 
-  var y = d3.scaleLinear()
-        .range([450,50])
-        .domain([
-          0,1500000
-        ]);
+  function callback(error, csvData, unitedstates, dcmetropolitan){
+    // Creating a generator for the graticule
+    var graticule = d3.geoGraticule()
+      .step([5,5]);
 
-  // Creating a variable to define the color of the circles
-  var color = d3.scaleLinear()
-        .range([
-            "#DEEBF7",
-            "#3182BD"
-        ])
-        .domain([
-            minPop,
-            maxPop
-        ]);
+    // Creating a background for the graticules
+    var gratBackground = map.append("path")
+      .datum(graticule.outline())
+      .attr("class", "gratBackground")
+      .attr("d", path);
 
-  // Creating a variable to create circles based upon the population values
-  var circles = container.selectAll(".circles")
-        .data(cityPop)
+    // Creating the graticules for the map
+    var gratLines = map.selectAll(".gratLines")
+      .data(graticule.lines())
+      .enter()
+      .append("path")
+      .attr("class", "gratLines")
+      .attr("d", path);
+
+    // Examining the results to ensure that the callback parameters are loaded properly
+    console.log(error);
+    console.log(csvData);
+
+    // Translating the United States and Washington DC TopoJSONs to GeoJSONs
+    var us = topojson.feature(unitedstates, unitedstates.objects.ContinentalUS_CT),
+        dcArea = topojson.feature(dcmetropolitan, dcmetropolitan.objects.DC_Metropolitan).features;
+
+    // Adding the United States Census Tracts to the map
+    var states = map.append("path")
+        .datum(us)
+        .attr("class", "states")
+        .attr("d", path);
+
+    // Adding the census tracts for the Washington DC Metropolitan Area
+    var censustracts = map.selectAll(".CensusTract")
+        .data(dcArea)
         .enter()
-        .append("circle")
-        .attr("class", "circles")
-        .attr("id", function(d, i){
-          console.log("d:", d, "i:", i);
-          return d.city;
+        .append("path")
+        .attr("class", function(d){
+          return "CensusTract " + d.properties.NAME;
         })
-        .attr("r", function(d){
-          var area = d.population * 0.001;
-          return Math.sqrt(area/Math.PI);
-        })
-        .attr("cx", function(d, i){
-          return x(i);
-        })
-        .attr("cy", function(d){
-          return y(d.population);
-        })
-        .style("fill", function(d, i){
-          return color(d.population);
-        })
-        .style("stroke", "#000");
+        .attr("d", path);
 
-  var yAxis = d3.axisLeft(y);
-  // Creating a vertical axis for the population chart
-  var axis = container.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(50,0)");
-
-  yAxis(axis);
-
-  // Creating a variable for the title of the chart
-  var title = container.append("text")
-    .attr("class", "title")
-    .attr("text-anchor", "middle")
-    .attr("x", function(d){
-      return (d*2+50)*0.5;
-      console.log(d);
-    })
-    .attr("y", 30)
-    .text("City Populations for Select Cities in Canada");
-
-  // Creating labels for each of the cirlce values
-  var labels = container.selectAll(".labels")
-    .data(cityPop)
-    .enter()
-    .append("text")
-    .attr("class", "labels")
-    .attr("text-anchor", "left")
-    .attr("y", function(d){
-        // Defining the vertical position centered for each circle
-        return y(d.population) + 5;
-    })
-
-  // Creating a variable to add city labels to the circles
-  var nameLine = labels.append("tspan")
-    .attr("class", "nameLine")
-    .attr("x", function(d,i){
-        // Defining the horizontal position to the right of each circle
-        return x(i) + Math.sqrt(d.population * 0.001 / Math.PI) + 5;
-    })
-    .text(function(d){
-        return d.city;
-    });
-
-  // Creating a format generator to format the population numbers
-  var format = d3.format(",");
-
-  // Creating a variable to add population labels to the circles
-  var popLine = labels.append("tspan")
-    .attr("class", "popLine")
-    .attr("x", function(d,i){
-        // Defining the horizontal position to the right of each circle
-        return x(i) + Math.sqrt(d.population * 0.001 / Math.PI) + 5;
-    })
-    .attr("dy", "15")
-    .text(function(d){
-        return "Pop: " + format(d.population);
-    });
+    console.log(us);
+    console.log(dcArea);
+  };
 };

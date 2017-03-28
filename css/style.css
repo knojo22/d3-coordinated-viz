@@ -1,25 +1,47 @@
 /* Stylesheet by Jon Fok, 2017 */
 
-svg{
-    background-color: "rgba(0,0,0,0.2)"
+h1 {
+  font-size: 20px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family:"Times New Roman", Helvetica, sans-serif;
+  background-color: none;
+  color: black;
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: black;
-  stroke-width: 1px;
-  shape-rendering: crispEdges;
-  font-family: "Times New Roman", sans-serif;
+h2 {
+  font-size: 15px;
+  height: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family:"Times New Roman", Helvetica, sans-serif;
+  background-color: none;
+  color: black;
 }
 
-.axis text {
-    font-family: "Times New Roman", sans-serif;
-    font-size: 0.9em;
+.states {
+    fill: #FFF;
+    stroke: #CCC;
+    stroke-width: 2px;
 }
 
-.title {
-    font-family: "Times New Roman", sans-serif;
-    font-size: 1.5em;
-    font-weight: bold;
+.CensusTract {
+    fill: #fa9fb5;
+    stroke: #636363;
+    stroke-width: 1.5;
+}
+
+.gratBackground {
+    fill: #D5E3FF;
+}
+
+.gratLines {
+    fill: none;
+    stroke: #999;
+    stroke-width: 1px;
+}
+
+.map {
+    border: medium solid #252525;
 }
