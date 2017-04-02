@@ -28,8 +28,9 @@ h2 {
 
 .CensusTract {
     fill: #fa9fb5;
-    stroke: #636363;
-    stroke-width: 1.5;
+    stroke: #000;
+    stroke-width: 0.5px;
+    stroke-linecap: round;
 }
 
 .gratBackground {
@@ -44,4 +45,11 @@ h2 {
 
 .map {
     border: medium solid #252525;
+    margin: 10px 0 0 20px;
+}
+
+.chart {
+  border: medium solid #252525;
+  float: right;
+  margin: 10px 20px 0 0 ;
 }

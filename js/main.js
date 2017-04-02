@@ -8,7 +8,7 @@ window.onload = setMap();
 function setMap(){
 
   // Creating map frame dimensions
-  var width = 960,
+  var width = window.innerWidth * 0.5,
       height = 460;
 
   // Creating a svg container for the map
@@ -52,7 +52,7 @@ function setMap(){
     var us = topojson.feature(unitedstates, unitedstates.objects.DC_States),
         dcArea = topojson.feature(dcmetropolitan, dcmetropolitan.objects.DC_Metropolitan).features;
 
-    // Adding the United States Census Tracts to the map
+    // Adding the United States pertaining to the DC area to the map
     var states = map.append("path")
         .datum(us)
         .attr("class", "states")
@@ -61,9 +61,13 @@ function setMap(){
     dcArea = joinData(dcArea, csvData);
 
     var colorScale = makeColorScale(csvData);
+
+    // Adding enumeration units to the map
     setEnumerationUnits(dcArea, map, path, colorScale);
-    console.log(us);
-    console.log(dcArea);
+
+    // Adding coordinated visualization to the map
+    setChart(csvData, colorScale);
+
   };
 };
 
@@ -90,12 +94,12 @@ function setGraticule(map, path){
 function joinData(dcArea, csvData){
   for (var i=0; i<csvData.length; i++){
     var csvCensusTract = csvData[i];
-    var csvKey = csvCensusTract.NAME;
+    var csvKey = csvCensusTract.CT;
 
     for (var a = 0; a < dcArea.length; a++){
 
       var geojsonProps = dcArea[a].properties;
-      var geojsonKey = geojsonProps.NAME;
+      var geojsonKey = geojsonProps.GEOID;
 
       if (geojsonKey == csvKey){
         attrArray.forEach(function(attr){
@@ -142,8 +146,42 @@ function setEnumerationUnits(dcArea, map, path, colorScale){
         return "CensusTract " + d.properties.NAME;
       })
       .attr("d", path)
-      .style("CensusTract", function(d){
+      .style("fill", function(d){
         return colorScale(d.properties[expressed]);
       });
+};
+
+function choropleth(props, colorScale){
+  var val = parseFloat(props[expressed]);
+  if (typeof val == 'number' && !isNaN(val)){
+    return colorScale(val);
+  } else {
+    return "#CCC";
+  };
+};
+
+function setChart(csvData, colorScale){
+  var chartWidth = window.innerWidth * 0.425,
+      chartHeight = 460;
+
+  var chart = d3.select("body")
+      .append("svg")
+      .attr("width", chartWidth)
+      .attr("height", chartHeight)
+      .attr("class", "chart");
+
+  var bars = chart.selectAll('.bars')
+      .data(csvData)
+      .enter()
+      .append("rect")
+      .attr("class", function(d){
+        return "bars " + d.CT;
+      })
+      .attr("width", chartWidth/csvData.length)
+      .attr("x", function(d, i){
+        return i * (chartWidth/csvData.length);
+      })
+      .attr("height", 460)
+      .attr("y", 0);
 };
 })();
