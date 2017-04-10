@@ -3,10 +3,6 @@
 
 // Creating pseudo-global variables
 
-// var year = ["15","14","13","12","11"];
-// var householdsize = ["1","2","3","4"];
-// var vehicle = ["0V","1V","2V","3V","4V"];
-
 var attrArray = ["P1HH0V_15","P1HH0V_14","P1HH0V_13","P1HH0V_12","P1HH0V_11","P1HH1V_15","P1HH1V_14","P1HH1V_13","P1HH1V_12","P1HH1V_11","P1HH2V_15","P1HH2V_14","P1HH2V_13","P1HH2V_12","P1HH2V_11","P1HH3V_15","P1HH3V_14","P1HH3V_13","P1HH3V_12","P1HH3V_11","P1HH4V_15","P1HH4V_14","P1HH4V_13","P1HH4V_12","P1HH4V_11","P2HH0V_15","P2HH0V_14","P2HH0V_13","P2HH0V_12","P2HH0V_11","P2HH1V_15","P2HH1V_14","P2HH1V_13","P2HH1V_12","P2HH1V_11","P2HH2V_15","P2HH2V_14","P2HH2V_13","P2HH2V_12","P2HH2V_11","P2HH3V_15","P2HH3V_14","P2HH3V_13","P2HH3V_12","P2HH3V_11","P2HH4V_15","P2HH4V_14","P2HH4V_13","P2HH4V_12","P2HH4V_11","P3HH0V_15","P3HH0V_14","P3HH0V_13","P3HH0V_12","P3HH0V_11","P3HH1V_15","P3HH1V_14","P3HH1V_13","P3HH1V_12","P3HH1V_11","P3HH2V_15","P3HH2V_14","P3HH2V_13","P3HH2V_12","P3HH2V_11","P3HH3V_15","P3HH3V_14","P3HH3V_13","P3HH3V_12","P3HH3V_11","P3HH4V_15","P3HH4V_14","P3HH4V_13","P3HH4V_12","P3HH4V_11","P4HH0V_15","P4HH0V_14","P4HH0V_13","P4HH0V_12","P4HH0V_11","P4HH1V_15","P4HH1V_14","P4HH1V_13","P4HH1V_12","P4HH1V_11","P4HH2V_15","P4HH2V_14","P4HH2V_13","P4HH2V_12","P4HH2V_11","P4HH3V_15","P4HH3V_14","P4HH3V_13","P4HH3V_12","P4HH3V_11","P4HH4V_15","P4HH4V_14","P4HH4V_13","P4HH4V_12","P4HH4V_11"]
 var expressed = attrArray[0];
 
@@ -268,6 +264,7 @@ function setChart(csvData, colorScale){
   updateChart(bars,csvData.length, colorScale);
 };
 
+// Defining a function to create a dropdown menu for the attributes
 function createDropdown(csvData){
 
   // Adding a select element for attributes
@@ -372,6 +369,8 @@ function createDropdown(csvData){
 
 };
 
+// Defining a function to update the choropleth map when the attribute is
+// changed from the dropdown menu
 function changeAttribute(attribute, csvData){
   expressed = attribute;
 
@@ -399,6 +398,8 @@ function changeAttribute(attribute, csvData){
   updateChart(bars, csvData.length, colorScale);
 };
 
+// Defining a function to update the bar chart when the dropdown menu
+// attribute is changed
 function updateChart(bars, n, colorScale){
   bars.attr("x", function(d, i){
           return i * (chartInnerWidth / n) + leftPadding;
@@ -426,6 +427,8 @@ function updateChart(bars, n, colorScale){
       // });
 };
 
+// Defining a function to highlight the census tract on the map and the
+// bar chart
 function highlight(props){
   // Changing the stroke of the highlighted Census Tract
   var selected = d3.selectAll("." + "c" + props.CT)
@@ -439,20 +442,8 @@ function highlight(props){
   setLabel(props);
 };
 
-function setLabel(props){
-  var labelAttribute = "<h1>" + props[expressed] +"</h1><b>" + expressed + "</b>";
-
-  var infolabel = d3.select("body")
-      .append("div")
-      .attr("class", "infolabel")
-      .attr("id", props.CT + "_label")
-      .html("Census Tract: " + props.NAME);
-
-  var censustractName = infolabel.append("div")
-      .attr("class", "labelname")
-      .html(props[expressed] + "%");
-};
-
+// Defining a function to dehighlight the census tract on the map and the
+// bar chart
 function dehighlight(props){
   var selected = d3.selectAll("." + "c" + props.CT)
       .style("stroke", function(){
@@ -497,6 +488,24 @@ function dehighlight(props){
       .remove();
 };
 
+// Defining a function to set the label of the census tract on the map and the
+// bar chart
+function setLabel(props){
+  var labelAttribute = "<h1>" + props[expressed] +"</h1><b>" + expressed + "</b>";
+
+  var infolabel = d3.select("body")
+      .append("div")
+      .attr("class", "infolabel")
+      .attr("id", props.CT + "_label")
+      .html("Census Tract: " + props.NAME);
+
+  var censustractName = infolabel.append("div")
+      .attr("class", "labelname")
+      .html(props[expressed] + "%");
+};
+
+// Defining a function to allow the label to move depending on the location
+// of the census tract on the map or the bar chart
 function moveLabel(){
     //get width of label
     var labelWidth = d3.select(".infolabel")
