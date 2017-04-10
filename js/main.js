@@ -2,8 +2,27 @@
 (function(){
 
 // Creating pseudo-global variables
-var attrArray = ["HHNV_15","HHNV_14","HHNV_13","HHNV_12","HHNV_11","HH1V_15","HH1V_14","HH1V_13","HH1V_12","HH1V_11","HH2V_15","HH2V_14","HH2V_13","HH2V_12","HH2V_11","HH3V_15","HH3V_14","HH3V_13","HH3V_12","HH3V_11","HH4V_15","HH4V_14","HH4V_13","HH4V_12","HH4V_11","P1HHNV_15","P1HHNV_14","P1HHNV_13","P1HHNV_12","P1HHNV_11","P1HH1V_15","P1HH1V_14","P1HH1V_13","P1HH1V_12","P1HH1V_11","P1HH2V_15","P1HH2V_14","P1HH2V_13","P1HH2V_12","P1HH2V_11","P1HH3V_15","P1HH3V_14","P1HH3V_13","P1HH3V_12","P1HH3V_11","P1HH4V_15","P1HH4V_14","P1HH4V_13","P1HH4V_12","P1HH4V_11","P2HHNV_15","P2HHNV_14","P2HHNV_13","P2HHNV_12","P2HHNV_11","P2HH1V_15","P2HH1V_14","P2HH1V_13","P2HH1V_12","P2HH1V_11","P2HH2V_15","P2HH2V_14","P2HH2V_13","P2HH2V_12","P2HH2V_11","P2HH3V_15","P2HH3V_14","P2HH3V_13","P2HH3V_12","P2HH3V_11","P2HH4V_15","P2HH4V_14","P2HH4V_13","P2HH4V_12","P2HH4V_11","P3HHNV_15","P3HHNV_14","P3HHNV_13","P3HHNV_12","P3HHNV_11","P3HH1V_15","P3HH1V_14","P3HH1V_13","P3HH1V_12","P3HH1V_11","P3HH2V_15","P3HH2V_14","P3HH2V_13","P3HH2V_12","P3HH2V_11","P3HH3V_15","P3HH3V_14","P3HH3V_13","P3HH3V_12","P3HH3V_11","P3HH4V_15","P3HH4V_14","P3HH4V_13","P3HH4V_12","P3HH4V_11","P4HHNV_15","P4HHNV_14","P4HHNV_13","P4HHNV_12","P4HHNV_11","P4HH1V_15","P4HH1V_14","P4HH1V_13","P4HH1V_12","P4HH1V_11","P4HH2V_15","P4HH2V_14","P4HH2V_13","P4HH2V_12","P4HH2V_11","P4HH3V_15","P4HH3V_14","P4HH3V_13","P4HH3V_12","P4HH3V_11","P4HH4V_15","P4HH4V_14","P4HH4V_13","P4HH4V_12","P4HH4V_11"]
-var expressed = attrArray[5];
+
+// var year = ["15","14","13","12","11"];
+// var householdsize = ["1","2","3","4"];
+// var vehicle = ["0V","1V","2V","3V","4V"];
+
+var attrArray = ["P1HH0V_15","P1HH0V_14","P1HH0V_13","P1HH0V_12","P1HH0V_11","P1HH1V_15","P1HH1V_14","P1HH1V_13","P1HH1V_12","P1HH1V_11","P1HH2V_15","P1HH2V_14","P1HH2V_13","P1HH2V_12","P1HH2V_11","P1HH3V_15","P1HH3V_14","P1HH3V_13","P1HH3V_12","P1HH3V_11","P1HH4V_15","P1HH4V_14","P1HH4V_13","P1HH4V_12","P1HH4V_11","P2HH0V_15","P2HH0V_14","P2HH0V_13","P2HH0V_12","P2HH0V_11","P2HH1V_15","P2HH1V_14","P2HH1V_13","P2HH1V_12","P2HH1V_11","P2HH2V_15","P2HH2V_14","P2HH2V_13","P2HH2V_12","P2HH2V_11","P2HH3V_15","P2HH3V_14","P2HH3V_13","P2HH3V_12","P2HH3V_11","P2HH4V_15","P2HH4V_14","P2HH4V_13","P2HH4V_12","P2HH4V_11","P3HH0V_15","P3HH0V_14","P3HH0V_13","P3HH0V_12","P3HH0V_11","P3HH1V_15","P3HH1V_14","P3HH1V_13","P3HH1V_12","P3HH1V_11","P3HH2V_15","P3HH2V_14","P3HH2V_13","P3HH2V_12","P3HH2V_11","P3HH3V_15","P3HH3V_14","P3HH3V_13","P3HH3V_12","P3HH3V_11","P3HH4V_15","P3HH4V_14","P3HH4V_13","P3HH4V_12","P3HH4V_11","P4HH0V_15","P4HH0V_14","P4HH0V_13","P4HH0V_12","P4HH0V_11","P4HH1V_15","P4HH1V_14","P4HH1V_13","P4HH1V_12","P4HH1V_11","P4HH2V_15","P4HH2V_14","P4HH2V_13","P4HH2V_12","P4HH2V_11","P4HH3V_15","P4HH3V_14","P4HH3V_13","P4HH3V_12","P4HH3V_11","P4HH4V_15","P4HH4V_14","P4HH4V_13","P4HH4V_12","P4HH4V_11"]
+var expressed = attrArray[0];
+
+var chartWidth = window.innerWidth * 0.425,
+    chartHeight = 470,
+    leftPadding = 25,
+    rightPadding = 2,
+    topBottomPadding = 5,
+    chartInnerWidth = chartWidth - leftPadding - rightPadding,
+    chartInnerHeight = chartHeight - topBottomPadding * 2,
+    translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
+
+// Creating a scale to proportionally size the bars to the frame and for the axis
+var yScale = d3.scaleLinear()
+    .range([chartInnerHeight, 0])
+    .domain([0,100]);
 
 window.onload = setMap();
 function setMap(){
@@ -40,7 +59,7 @@ function setMap(){
       .defer(d3.json, "data/DC_Metropolitan.topojson")
       .await(callback);
 
-  function callback(error, csvData, unitedstates, dcmetropolitan){
+  function callback(error, csvData, unitedstates, dcmetropolitan, attribute){
     // Creating a generator for the graticule
 
     setGraticule(map, path);
@@ -71,6 +90,10 @@ function setMap(){
 
     // Adding coordinated visualization to the map
     setChart(csvData, colorScale);
+
+    // Adding dropdown box to the map
+    createDropdown(csvData);
+
   };
 };
 
@@ -155,14 +178,23 @@ function setEnumerationUnits(dcArea, map, path, colorScale){
       .enter()
       .append("path")
       .attr("class", function(d){
-        return "CensusTract " + d.properties.NAME;
+        return "CensusTract " + "c" + d.properties.GEOID;
       })
       .attr("d", path)
       .style("fill", function(d){
-        return colorScale(d.properties[expressed]);
-      });
-};
+        return colorScale(d.properties, colorScale);
+      })
+      .on("mouseover", function(d){
+        highlight(d.properties);
+      })
+      .on("mouseout", function(d){
+        dehighlight(d.properties);
+      })
+      .on("mousemove", moveLabel);
 
+  var desc = censustracts.append("desc")
+      .text('{"stroke": "#000", "stroke-width": "0.5px"}');
+};
 
 // Defining a function to retun a color based upon the data value
 function choropleth(props, colorScale){
@@ -176,14 +208,6 @@ function choropleth(props, colorScale){
 
 // Defining a function to create a coordinated bar chart
 function setChart(csvData, colorScale){
-  var chartWidth = window.innerWidth * 0.425,
-      chartHeight = 470,
-      leftPadding = 25,
-      rightPadding = 2,
-      topBottomPadding = 5,
-      chartInnerWidth = chartWidth - leftPadding - rightPadding,
-      chartInnerHeight = chartHeight - topBottomPadding * 2,
-      translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
 
   // Creating another svg element for the bar chart
   var chart = d3.select("body")
@@ -199,11 +223,6 @@ function setChart(csvData, colorScale){
       .attr("height", chartInnerHeight)
       .attr("transform", translate);
 
-  // Creating a scale to proportionally size the bars to the frame and for the axis
-  var yScale = d3.scaleLinear()
-      .range([chartInnerHeight, 0])
-      .domain([0,1]);
-
   // Defining the bars for each Census Tract
   var bars = chart.selectAll(".bars")
       .data(csvData)
@@ -213,28 +232,21 @@ function setChart(csvData, colorScale){
         return b[expressed] - a[expressed]
       })
       .attr("class", function(d){
-        return "bars " + d.CT;
+        return "bars " + "c" + d.CT;
       })
       .attr("width", chartInnerWidth / csvData.length)
-      .attr("x", function(d, i){
-        return i * (chartInnerWidth / csvData.length) + leftPadding;
-      })
-      .attr("height", function(d){
-        return chartInnerHeight - yScale(parseFloat(d[expressed]));
-      })
-      .attr("y",function(d){
-        return yScale(parseFloat(d[expressed])) + topBottomPadding;
-      })
-      .style("fill", function(d){
-        return choropleth(d, colorScale);
-      });
+      .on("mouseover", highlight)
+      .on("mouseout", dehighlight)
+      .on("mousemove", moveLabel);
 
+  var desc = bars.append("desc")
+      .text('{"stroke": "none", "stroke-width": "0px"}');
   // Creating a text element for the bar chart title
   var chartTitle = chart.append("text")
-      .attr("x", 40)
+      .attr("x", 85)
       .attr("y", 40)
       .attr("class", "chartTitle")
-      .text("Percentage of " + expressed[0] + expressed[1]+"s" + " with " + expressed[2] + expressed[3] + " for " + "20"+expressed[5] + expressed[6]);
+      .text("Percentage of " + expressed[1] + " " + expressed[0]+"erson(s)" + " Households with " + expressed[4] + " Vehicle(s)" + " for " + "20"+expressed[7] + expressed[8]);
 
   // Creating a vertical axis generator for the bar chart
   var yAxis = d3.axisLeft()
@@ -252,5 +264,260 @@ function setChart(csvData, colorScale){
       .attr("width", chartInnerWidth)
       .attr("height", chartInnerHeight)
       .attr("transform", translate);
+
+  updateChart(bars,csvData.length, colorScale);
 };
+
+function createDropdown(csvData){
+
+  // Adding a select element for attributes
+  var dropdownattribute = d3.select("body")
+      .append("select")
+      .attr("class", "dropdown")
+      .on("change", function(){
+        console.log(this.value);
+          changeAttribute(this.value, csvData)
+      });
+
+  var titleOption = dropdownattribute.append("option")
+      .attr("class", "titleOption")
+      .attr("disabled", "true")
+      .text("Select Attribute:")
+
+  var attrOptions = dropdownattribute.selectAll("attrOptions")
+      .data(attrArray)
+      .enter()
+      .append("option")
+      .attr("value", function(d){
+        return d
+      })
+      .text(function(d){
+        return d
+      });
+
+  // // Adding a select element for household size
+  // var dropdownhousehold = d3.select("body")
+  //     .append("select")
+  //     .attr("class", "dropdown")
+  //     .on("change", function(){
+  //       console.log(this.value);
+  //         changeAttribute(this.value, csvData)
+  //     });
+  //
+  // var titleOption = dropdownhousehold.append("option")
+  //     .attr("class", "titleOption")
+  //     .attr("disabled", "true")
+  //     .text("Select Household Size:")
+  //
+  // var attrOptions = dropdownhousehold.selectAll("attrOptions")
+  //     .data(attrArray)
+  //     .enter()
+  //     .append("option")
+  //     .attr("value", function(d){
+  //       return d
+  //     })
+  //     .text(function(d){
+  //       return householdsize + " Person(s) Households"
+  //     });
+  //
+  // // Adding a select element for vehicle available
+  // var dropdownvehicle = d3.select("body")
+  //     .append("select")
+  //     .attr("class", "dropdown2")
+  //     .on("change", function(){
+  //       console.log(this.value);
+  //         changeAttribute(this.value, csvData)
+  //     });
+  //
+  // var titleOption2 = dropdownvehicle.append("option")
+  //     .attr("class", "titleOption")
+  //     .attr("disabled", "true")
+  //     .text("Select # of Vehicles :")
+  //
+  // var attrOptions2 = dropdownvehicle.selectAll("attrOptions")
+  //     .data(attrArray)
+  //     .enter()
+  //     .append("option")
+  //     .attr("value", function(d){
+  //       return d
+  //     })
+  //     .text(function(d){
+  //       return vehicle
+  //     });
+  //
+  // // Adding a select element for year
+  // var dropdownyear  = d3.select("body")
+  //     .append("select")
+  //     .attr("class", "dropdown3")
+  //     .on("change", function(){
+  //       console.log(this.value);
+  //         changeAttribute(this.value, csvData)
+  //     });
+  //
+  // var titleOption3 = dropdownyear.append("option")
+  //     .attr("class", "titleOption")
+  //     .attr("disabled", "true")
+  //     .text("Select Year:")
+  //
+  // var attrOptions3 = dropdownyear.selectAll("attrOptions")
+  //     .data(attrArray)
+  //     .enter()
+  //     .append("option")
+  //     .attr("value", function(d){
+  //       return d
+  //     })
+  //     .text(function(d){
+  //       return d
+  //     });
+
+};
+
+function changeAttribute(attribute, csvData){
+  expressed = attribute;
+
+  //if demographic, update var
+  //else if year, update var2
+  //expressed = var + "_" + var2
+
+  var colorScale = makeColorScale(csvData);
+
+  var censustracts = d3.selectAll(".CensusTract")
+      .style("fill", function(d){
+        return choropleth(d.properties, colorScale);
+      });
+
+  var bars = d3.selectAll(".bars")
+      .sort(function(a,b){
+        return b[expressed]-a[expressed];
+      })
+      .transition()
+      .delay(function(d,i){
+        return i * 20
+      })
+      .duration(500);
+
+  updateChart(bars, csvData.length, colorScale);
+};
+
+function updateChart(bars, n, colorScale){
+  bars.attr("x", function(d, i){
+          return i * (chartInnerWidth / n) + leftPadding;
+      })
+      // Resizing the bars in the chart based upon the update
+      .attr("height", function(d, i){
+          return chartInnerHeight - yScale(parseFloat(d[expressed]));
+      })
+      .attr("y", function(d, i){
+          return yScale(parseFloat(d[expressed])) + topBottomPadding;
+      })
+      // Recoloring the bars in the chart based upon the update
+      .style("fill", function(d){
+          return choropleth(d, colorScale);
+      });
+
+  var chartTitle = d3.selectAll(".chartTitle")
+      .text("Percentage of " + expressed[1] + " " + expressed[0]+"ersons" + " Households with " + expressed[4] + " Vehicle(s)" + " for " + "20"+expressed[7] + expressed[8]);
+      // .text(function(d,i){
+      //   if (attrArray[0].length < 8){
+      //     return "Percentage of " + expressed[0] + expressed[1]+"s" + " with " + expressed[2] + " Vehicle(s) for " + "20"+expressed[5] + expressed[6];
+      //   } else {
+      //     return "Percentage of " + expressed[1] + " " + expressed[0]+"ersons" + " Households with " + expressed[4] + " Vehicle(s) for " + "20"+expressed[7] + expressed[8];
+      //   };
+      // });
+};
+
+function highlight(props){
+  // Changing the stroke of the highlighted Census Tract
+  var selected = d3.selectAll("." + "c" + props.CT)
+    .style("stroke", "blue")
+    .style("stroke-width", "2");
+
+  var selected2 = d3.selectAll("." + "c" + props.GEOID)
+    .style("stroke", "blue")
+    .style("stroke-width", "2");
+
+  setLabel(props);
+};
+
+function setLabel(props){
+  var labelAttribute = "<h1>" + props[expressed] +"</h1><b>" + expressed + "</b>";
+
+  var infolabel = d3.select("body")
+      .append("div")
+      .attr("class", "infolabel")
+      .attr("id", props.CT + "_label")
+      .html("Census Tract: " + props.NAME);
+
+  var censustractName = infolabel.append("div")
+      .attr("class", "labelname")
+      .html(props[expressed] + "%");
+};
+
+function dehighlight(props){
+  var selected = d3.selectAll("." + "c" + props.CT)
+      .style("stroke", function(){
+        return getStyle(this, "stroke")
+      })
+      .style("stroke-width", function(){
+        return getStyle(this, "stroke-width")
+      });
+
+  function getStyle(element, styleName){
+      var styleText = d3.select(element)
+          .select("desc")
+          .text();
+
+      var styleObject = JSON.parse(styleText);
+
+      return styleObject[styleName];
+  };
+
+  d3.select(".infolabel")
+      .remove();
+
+  var selected2 = d3.selectAll("." + "c" + props.GEOID)
+      .style("stroke", function(){
+        return getStyle(this, "stroke")
+      })
+      .style("stroke-width", function(){
+        return getStyle(this, "stroke-width")
+      });
+
+  function getStyle(element, styleName){
+      var styleText = d3.select(element)
+          .select("desc")
+          .text();
+
+      var styleObject = JSON.parse(styleText);
+
+      return styleObject[styleName];
+  };
+
+  d3.select(".infolabel")
+      .remove();
+};
+
+function moveLabel(){
+    //get width of label
+    var labelWidth = d3.select(".infolabel")
+        .node()
+        .getBoundingClientRect()
+        .width;
+
+    //use coordinates of mousemove event to set label coordinates
+    var x1 = d3.event.clientX + 10,
+        y1 = d3.event.clientY - 75,
+        x2 = d3.event.clientX - labelWidth - 10,
+        y2 = d3.event.clientY + 25;
+
+    //horizontal label coordinate, testing for overflow
+    var x = d3.event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1;
+    //vertical label coordinate, testing for overflow
+    var y = d3.event.clientY < 75 ? y2 : y1;
+
+    d3.select(".infolabel")
+        .style("left", x + "px")
+        .style("top", y + "px");
+};
+
 })();
