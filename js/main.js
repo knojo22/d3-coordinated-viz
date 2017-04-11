@@ -1,7 +1,6 @@
 /* JavaScript by Jon Fok, 2017 */
 (function(){
 
-<<<<<<< HEAD
 // Creating pseudo-global variables for the map and the bar chart
 var householdsize = ["P1HH","P2HH","P3HH","P4HH"];
 var vehicle = ["0V","1V","2V","3V","4V"];
@@ -10,17 +9,11 @@ var year = ["15","14","13","12","11"];
 var currenthousehold = householdsize[0]
 var currentvehicle = vehicle[0]
 var currentyear = year[0]
-=======
-// Creating pseudo-global variables
->>>>>>> origin/master
 
 var attrArray = ["P1HH0V_15","P1HH0V_14","P1HH0V_13","P1HH0V_12","P1HH0V_11","P1HH1V_15","P1HH1V_14","P1HH1V_13","P1HH1V_12","P1HH1V_11","P1HH2V_15","P1HH2V_14","P1HH2V_13","P1HH2V_12","P1HH2V_11","P1HH3V_15","P1HH3V_14","P1HH3V_13","P1HH3V_12","P1HH3V_11","P1HH4V_15","P1HH4V_14","P1HH4V_13","P1HH4V_12","P1HH4V_11","P2HH0V_15","P2HH0V_14","P2HH0V_13","P2HH0V_12","P2HH0V_11","P2HH1V_15","P2HH1V_14","P2HH1V_13","P2HH1V_12","P2HH1V_11","P2HH2V_15","P2HH2V_14","P2HH2V_13","P2HH2V_12","P2HH2V_11","P2HH3V_15","P2HH3V_14","P2HH3V_13","P2HH3V_12","P2HH3V_11","P2HH4V_15","P2HH4V_14","P2HH4V_13","P2HH4V_12","P2HH4V_11","P3HH0V_15","P3HH0V_14","P3HH0V_13","P3HH0V_12","P3HH0V_11","P3HH1V_15","P3HH1V_14","P3HH1V_13","P3HH1V_12","P3HH1V_11","P3HH2V_15","P3HH2V_14","P3HH2V_13","P3HH2V_12","P3HH2V_11","P3HH3V_15","P3HH3V_14","P3HH3V_13","P3HH3V_12","P3HH3V_11","P3HH4V_15","P3HH4V_14","P3HH4V_13","P3HH4V_12","P3HH4V_11","P4HH0V_15","P4HH0V_14","P4HH0V_13","P4HH0V_12","P4HH0V_11","P4HH1V_15","P4HH1V_14","P4HH1V_13","P4HH1V_12","P4HH1V_11","P4HH2V_15","P4HH2V_14","P4HH2V_13","P4HH2V_12","P4HH2V_11","P4HH3V_15","P4HH3V_14","P4HH3V_13","P4HH3V_12","P4HH3V_11","P4HH4V_15","P4HH4V_14","P4HH4V_13","P4HH4V_12","P4HH4V_11"]
 var expressed = attrArray[0];
 
-<<<<<<< HEAD
 // Creating the parameters for the chart area
-=======
->>>>>>> origin/master
 var chartWidth = window.innerWidth * 0.425,
     chartHeight = 470,
     leftPadding = 25,
@@ -248,25 +241,16 @@ function setChart(csvData, colorScale){
       .on("mouseover", highlight)
       .on("mouseout", dehighlight)
       .on("mousemove", moveLabel);
-<<<<<<< HEAD
 
   var desc = bars.append("desc")
       .text('{"stroke": "none", "stroke-width": "0px"}');
-=======
->>>>>>> origin/master
 
-  var desc = bars.append("desc")
-      .text('{"stroke": "none", "stroke-width": "0px"}');
   // Creating a text element for the bar chart title
   var chartTitle = chart.append("text")
       .attr("x", 85)
       .attr("y", 40)
       .attr("class", "chartTitle")
-<<<<<<< HEAD
       .text("Percentage of " + currenthousehold[1] + " Person(s) Households with " + currentvehicle[0] + " Vehicle(s) for " + "20"+currentyear);
-=======
-      .text("Percentage of " + expressed[1] + " " + expressed[0]+"erson(s)" + " Households with " + expressed[4] + " Vehicle(s)" + " for " + "20"+expressed[7] + expressed[8]);
->>>>>>> origin/master
 
   // Creating a vertical axis generator for the bar chart
   var yAxis = d3.axisLeft()
@@ -291,21 +275,14 @@ function setChart(csvData, colorScale){
 // Defining a function to create a dropdown menu for the attributes
 function createDropdown(csvData){
 
-<<<<<<< HEAD
   // Adding a select element for household size
   var dropdownhousehold = d3.select("body")
-=======
-  // Adding a select element for attributes
-  var dropdownattribute = d3.select("body")
->>>>>>> origin/master
       .append("select")
       .attr("class", "dropdown")
       .on("change", function(){
-        console.log(this.value);
           changeAttribute(this.value, csvData)
       });
 
-<<<<<<< HEAD
   // Adding attribute options for the dropdown menu
   var attrOptions = dropdownhousehold.selectAll("attrOptions")
       .data(householdsize)
@@ -323,29 +300,18 @@ function createDropdown(csvData){
       .append("select")
       .attr("class", "dropdown2")
       .on("change", function(){
-        console.log(this.value);
           changeAttribute(this.value, csvData)
       });
 
   // Adding attribute options for the dropdown menu
   var attrOptions2 = dropdownvehicle.selectAll("attrOptions")
       .data(vehicle)
-=======
-  var titleOption = dropdownattribute.append("option")
-      .attr("class", "titleOption")
-      .attr("disabled", "true")
-      .text("Select Attribute:")
-
-  var attrOptions = dropdownattribute.selectAll("attrOptions")
-      .data(attrArray)
->>>>>>> origin/master
       .enter()
       .append("option")
       .attr("value", function(d){
         return d
       })
       .text(function(d){
-<<<<<<< HEAD
         return d[0] + " Vehicle(s)"
       });
 
@@ -354,7 +320,6 @@ function createDropdown(csvData){
       .append("select")
       .attr("class", "dropdown3")
       .on("change", function(){
-        console.log(this.value);
           changeAttribute(this.value, csvData)
       });
 
@@ -384,96 +349,6 @@ function changeAttribute(attribute, csvData){
 
   // Combining all of the attribute values into the expressed input for the map and the bar chart
   expressed = currenthousehold + currentvehicle + "_" + currentyear;
-=======
-        return d
-      });
-
-  // // Adding a select element for household size
-  // var dropdownhousehold = d3.select("body")
-  //     .append("select")
-  //     .attr("class", "dropdown")
-  //     .on("change", function(){
-  //       console.log(this.value);
-  //         changeAttribute(this.value, csvData)
-  //     });
-  //
-  // var titleOption = dropdownhousehold.append("option")
-  //     .attr("class", "titleOption")
-  //     .attr("disabled", "true")
-  //     .text("Select Household Size:")
-  //
-  // var attrOptions = dropdownhousehold.selectAll("attrOptions")
-  //     .data(attrArray)
-  //     .enter()
-  //     .append("option")
-  //     .attr("value", function(d){
-  //       return d
-  //     })
-  //     .text(function(d){
-  //       return householdsize + " Person(s) Households"
-  //     });
-  //
-  // // Adding a select element for vehicle available
-  // var dropdownvehicle = d3.select("body")
-  //     .append("select")
-  //     .attr("class", "dropdown2")
-  //     .on("change", function(){
-  //       console.log(this.value);
-  //         changeAttribute(this.value, csvData)
-  //     });
-  //
-  // var titleOption2 = dropdownvehicle.append("option")
-  //     .attr("class", "titleOption")
-  //     .attr("disabled", "true")
-  //     .text("Select # of Vehicles :")
-  //
-  // var attrOptions2 = dropdownvehicle.selectAll("attrOptions")
-  //     .data(attrArray)
-  //     .enter()
-  //     .append("option")
-  //     .attr("value", function(d){
-  //       return d
-  //     })
-  //     .text(function(d){
-  //       return vehicle
-  //     });
-  //
-  // // Adding a select element for year
-  // var dropdownyear  = d3.select("body")
-  //     .append("select")
-  //     .attr("class", "dropdown3")
-  //     .on("change", function(){
-  //       console.log(this.value);
-  //         changeAttribute(this.value, csvData)
-  //     });
-  //
-  // var titleOption3 = dropdownyear.append("option")
-  //     .attr("class", "titleOption")
-  //     .attr("disabled", "true")
-  //     .text("Select Year:")
-  //
-  // var attrOptions3 = dropdownyear.selectAll("attrOptions")
-  //     .data(attrArray)
-  //     .enter()
-  //     .append("option")
-  //     .attr("value", function(d){
-  //       return d
-  //     })
-  //     .text(function(d){
-  //       return d
-  //     });
-
-};
-
-// Defining a function to update the choropleth map when the attribute is
-// changed from the dropdown menu
-function changeAttribute(attribute, csvData){
-  expressed = attribute;
-
-  //if demographic, update var
-  //else if year, update var2
-  //expressed = var + "_" + var2
->>>>>>> origin/master
 
   var colorScale = makeColorScale(csvData);
 
@@ -482,10 +357,7 @@ function changeAttribute(attribute, csvData){
         return choropleth(d.properties, colorScale);
       });
 
-<<<<<<< HEAD
   // Updating the values for each bar in the bar chart and creating an animation for visual feedback of the change
-=======
->>>>>>> origin/master
   var bars = d3.selectAll(".bars")
       .sort(function(a,b){
         return b[expressed]-a[expressed];
@@ -494,21 +366,12 @@ function changeAttribute(attribute, csvData){
       .delay(function(d,i){
         return i * 20
       })
-<<<<<<< HEAD
       .duration(1000);
-=======
-      .duration(500);
->>>>>>> origin/master
 
   updateChart(bars, csvData.length, colorScale);
 };
 
-<<<<<<< HEAD
 // Defining a function to update the bar chart when the dropdown menu attribute is changed
-=======
-// Defining a function to update the bar chart when the dropdown menu
-// attribute is changed
->>>>>>> origin/master
 function updateChart(bars, n, colorScale){
   bars.attr("x", function(d, i){
           return i * (chartInnerWidth / n) + leftPadding;
@@ -526,25 +389,10 @@ function updateChart(bars, n, colorScale){
       });
 
   var chartTitle = d3.selectAll(".chartTitle")
-<<<<<<< HEAD
       .text("Percentage of " + currenthousehold[1] + " Person(s) Households with " + currentvehicle[0] + " Vehicle(s) for " + "20"+currentyear);
 };
 
 // Defining a function to highlight the census tract on the map and the bar chart
-=======
-      .text("Percentage of " + expressed[1] + " " + expressed[0]+"ersons" + " Households with " + expressed[4] + " Vehicle(s)" + " for " + "20"+expressed[7] + expressed[8]);
-      // .text(function(d,i){
-      //   if (attrArray[0].length < 8){
-      //     return "Percentage of " + expressed[0] + expressed[1]+"s" + " with " + expressed[2] + " Vehicle(s) for " + "20"+expressed[5] + expressed[6];
-      //   } else {
-      //     return "Percentage of " + expressed[1] + " " + expressed[0]+"ersons" + " Households with " + expressed[4] + " Vehicle(s) for " + "20"+expressed[7] + expressed[8];
-      //   };
-      // });
-};
-
-// Defining a function to highlight the census tract on the map and the
-// bar chart
->>>>>>> origin/master
 function highlight(props){
   // Changing the stroke of the highlighted Census Tract
   var selected = d3.selectAll("." + "c" + props.CT)
@@ -558,12 +406,7 @@ function highlight(props){
   setLabel(props);
 };
 
-<<<<<<< HEAD
 // Defining a function to dehighlight the census tract on the map and the bar chart
-=======
-// Defining a function to dehighlight the census tract on the map and the
-// bar chart
->>>>>>> origin/master
 function dehighlight(props){
   var selected = d3.selectAll("." + "c" + props.CT)
       .style("stroke", function(){
@@ -608,7 +451,6 @@ function dehighlight(props){
       .remove();
 };
 
-<<<<<<< HEAD
 // Defining a function to set the label of the census tract on the map and the bar chart
 function setLabel(props){
   var labelAttribute = "<h1><b>" + props[expressed] + "%"+
@@ -628,52 +470,20 @@ function setLabel(props){
 // Defining a function to allow the label to move depending on the location  of the census tract on the map or the bar chart
 function moveLabel(){
     // Getting the width of label
-=======
-// Defining a function to set the label of the census tract on the map and the
-// bar chart
-function setLabel(props){
-  var labelAttribute = "<h1>" + props[expressed] +"</h1><b>" + expressed + "</b>";
-
-  var infolabel = d3.select("body")
-      .append("div")
-      .attr("class", "infolabel")
-      .attr("id", props.CT + "_label")
-      .html("Census Tract: " + props.NAME);
-
-  var censustractName = infolabel.append("div")
-      .attr("class", "labelname")
-      .html(props[expressed] + "%");
-};
-
-// Defining a function to allow the label to move depending on the location
-// of the census tract on the map or the bar chart
-function moveLabel(){
-    //get width of label
->>>>>>> origin/master
     var labelWidth = d3.select(".infolabel")
         .node()
         .getBoundingClientRect()
         .width;
 
-<<<<<<< HEAD
     // Using the coordinates to set label coordinates when mousing over
-=======
-    //use coordinates of mousemove event to set label coordinates
->>>>>>> origin/master
     var x1 = d3.event.clientX + 10,
         y1 = d3.event.clientY - 75,
         x2 = d3.event.clientX - labelWidth - 10,
         y2 = d3.event.clientY + 25;
 
-<<<<<<< HEAD
     // Creating the horizontal label coordinate & testing for overflow
     var x = d3.event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1;
     // Creating the vertical label coordinate & testing for overflow
-=======
-    //horizontal label coordinate, testing for overflow
-    var x = d3.event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1;
-    //vertical label coordinate, testing for overflow
->>>>>>> origin/master
     var y = d3.event.clientY < 75 ? y2 : y1;
 
     d3.select(".infolabel")
