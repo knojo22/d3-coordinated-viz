@@ -62,7 +62,11 @@ h3 {
 
 .chartTitle {
   font-family:"Times New Roman", Helvetica, sans-serif;
+<<<<<<< HEAD
   font-size: 1.0em;
+=======
+  font-size: 0.93em;
+>>>>>>> origin/master
   font-weight: bold;
   font-variant: small-caps;
 }
@@ -80,6 +84,7 @@ h3 {
 
 .dropdown {
   position: absolute;
+<<<<<<< HEAD
   top: 110px;
   left: 40px;
   z-index: 10;
@@ -87,6 +92,14 @@ h3 {
   font-size: 1em;
   font-weight: bold;
   font-style: italic;
+=======
+  top: 100px;
+  left: 40px;
+  z-index: 10;
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+>>>>>>> origin/master
   padding: 2px;
   border: 1px solid #999;
   box-shadow: 2px 2px 4px #999;
@@ -97,10 +110,16 @@ h3 {
   top: 150px;
   left: 40px;
   z-index: 10;
+<<<<<<< HEAD
   font-family:"Times New Roman", Helvetica, sans-serif;
   font-size: 1em;
   font-weight: bold;
   font-style: italic;
+=======
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+>>>>>>> origin/master
   padding: 2px;
   border: 1px solid #999;
   box-shadow: 2px 2px 4px #999;
@@ -108,6 +127,7 @@ h3 {
 
 .dropdown3 {
   position: absolute;
+<<<<<<< HEAD
   top: 190px;
   left: 40px;
   z-index: 10;
@@ -115,6 +135,14 @@ h3 {
   font-size: 1em;
   font-weight: bold;
   font-style: italic;
+=======
+  top: 200px;
+  left: 40px;
+  z-index: 10;
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+>>>>>>> origin/master
   padding: 2px;
   border: 1px solid #999;
   box-shadow: 2px 2px 4px #999;
@@ -122,11 +150,16 @@ h3 {
 
 .infolabel {
   position: absolute;
+<<<<<<< HEAD
   height: 60px;
+=======
+  height: 50px;
+>>>>>>> origin/master
   min-width: 100px;
   color: #fff;
   background-color: #000;
   border: solid thin #fff;
+<<<<<<< HEAD
   font-variant: small-caps;
   padding: 5px 20px;
 }
@@ -138,6 +171,18 @@ h3 {
   padding: 0;
   display: inline-block;
   line-height: 1.5em;
+=======
+  font-size: 1em;
+  padding: 5px 10px;
+  top: -75px;
+}
+
+.infolabel h1 {
+    margin: 0 20px 0 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 1em;
+>>>>>>> origin/master
 }
 
 option {
